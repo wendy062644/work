@@ -5,6 +5,12 @@
 #include<iomanip>
 using namespace std;
 void Set(int x, int y);
+void Calculate(string print){
+	for(int a = 0; print.length() > a; a++)
+	{
+		
+	}
+}
 int main(){
 	char p[3] = {'/', 'x', '-'};
 	string print;
@@ -102,6 +108,12 @@ int main(){
 					break;
 				case 45:
 					print = print + '-';
+					break;
+				case 46:
+					print = print + '.';
+					break;
+				case 61:
+					Calculate(print);
 					break;
 			}
 			Set(4, 2);
