@@ -50,12 +50,16 @@ int main(){
 		}
 		cout << " |" << endl;
 	}
-	cout << " ---------------------" << endl;
+	cout << " ---------------------" << endl << endl << " Press Space to Clear";
 	while(1)
 	{
 		if(_kbhit())
 		{
 			char num = getch();
+			if(print.length() >= 15){
+				if(num == 32){print.clear(); Set(4, 2); cout << setw(15) << print; continue;}
+				else{continue;}
+			}
 			switch(num){
 				case 48:
 					print = print + '0';
@@ -101,7 +105,7 @@ int main(){
 					break;
 			}
 			Set(4, 2);
-			cout << setw(15) << print << endl;
+			cout << setw(15) << print;
 		}
 		Sleep(100);
 	}
