@@ -8,6 +8,7 @@ void Set(int x, int y);
 void Calculate(string print){
 	float num[5] = {0};
 	int numfloat[5] = {0}, n = 0, count[8] = {0} , f = 1; // 1 = 除, 2 = 加, 3 = 乘 , 4 = 減 
+	long long tt = 0;
 	for(int a = 0; print.length() > a; a++)
 	{
 		if(f&&print[a] >= '0'&&print[a] <= '9'){
@@ -19,16 +20,16 @@ void Calculate(string print){
 		else if(print[a] == '+'||print[a] == '-'||print[a] == '/'||print[a] == '*'){
 			switch(print[a]){
 				case 47:
-					count[n] = 1;
+					count[n] = 1; //除 
 					break;
 				case 43:
-					count[n] = 2;
+					count[n] = 2; //加 
 					break;
 				case 42:
-					count[n] = 3; 
+					count[n] = 3; //乘 
 					break;
 				case 45:
-					count[n] = 4;
+					count[n] = 4; //減 
 					break;
 			}
 			n++;
@@ -36,6 +37,26 @@ void Calculate(string print){
 		}
 		else if(print[a] == '.'){
 			f = 0;
+		}
+		if(a == print.length()-1){
+			tt = num[0];
+			for(int i = 0; n > i; i++)
+			{
+				if(count[i] == 1){
+					tt = tt / num[i+1];
+				}
+				else if(count[i] == 2){
+					tt = tt + num[i+1];
+				}
+				else if(count[i] == 3){
+					tt = tt * num[i+1];
+				}
+				else if(count[i] == 4){
+					tt = tt - num[i+1];
+				}
+			}
+			Set(4, 2);
+			cout << setw(15) << tt;
 		}
 	}
 }
@@ -144,8 +165,11 @@ int main(){
 					Calculate(print);
 					break;
 			}
-			Set(4, 2);
-			cout << setw(15) << print;
+			if(num != 61&&num != )
+			{
+				Set(4, 2);
+				cout << setw(15) << print;
+			}
 		}
 		Sleep(100);
 	}
