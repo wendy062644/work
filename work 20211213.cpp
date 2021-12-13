@@ -4,8 +4,9 @@
 #include<conio.h>
 #include<iomanip>
 using namespace std;
+string print;
 void Set(int x, int y);
-void Calculate(string print){
+void Calculate(){
 	float num[5] = {0};
 	int numfloat[5] = {0}, n = 0, count[8] = {0} , f = 1; // 1 = 除, 2 = 加, 3 = 乘 , 4 = 減 
 	long long tt = 0;
@@ -17,7 +18,7 @@ void Calculate(string print){
 		else if(!f&&print[a] >= '0'&&print[a] <= '9'){
 			numfloat[n] = numfloat[n]*10 + print[a]-48;
 		}
-		else if(print[a] == '+'||print[a] == '-'||print[a] == '/'||print[a] == '*'){
+		else if(print[a] == '+'||print[a] == '-'||print[a] == '/'||print[a] == 'x'){
 			switch(print[a]){
 				case 47:
 					count[n] = 1; //除 
@@ -25,7 +26,7 @@ void Calculate(string print){
 				case 43:
 					count[n] = 2; //加 
 					break;
-				case 42:
+				case 120:
 					count[n] = 3; //乘 
 					break;
 				case 45:
@@ -62,7 +63,6 @@ void Calculate(string print){
 }
 int main(){
 	char p[3] = {'/', 'x', '-'};
-	string print;
 	int n = 7, m = 0;
 	cout << " ---------------------" << endl;
 	for(int i = 0; 3 > i; i++)
@@ -116,6 +116,11 @@ int main(){
 				else{continue;}
 			}
 			switch(num){
+				case 32:
+					print.clear();
+					Set(4, 2);
+					cout << setw(15) << print; 
+					break;
 				case 48:
 					print = print + '0';
 					break;
@@ -162,10 +167,10 @@ int main(){
 					print = print + '.';
 					break;
 				case 61:
-					Calculate(print);
+					Calculate();
 					break;
 			}
-			if(num != 61&&num != )
+			if(num != 61)
 			{
 				Set(4, 2);
 				cout << setw(15) << print;
