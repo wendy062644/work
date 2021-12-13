@@ -6,9 +6,37 @@
 using namespace std;
 void Set(int x, int y);
 void Calculate(string print){
+	float num[5] = {0};
+	int numfloat[5] = {0}, n = 0, count[8] = {0} , f = 1; // 1 = 除, 2 = 加, 3 = 乘 , 4 = 減 
 	for(int a = 0; print.length() > a; a++)
 	{
-		
+		if(f&&print[a] >= '0'&&print[a] <= '9'){
+			num[n] = num[n]*10 + print[a]-48;
+		}
+		else if(!f&&print[a] >= '0'&&print[a] <= '9'){
+			numfloat[n] = numfloat[n]*10 + print[a]-48;
+		}
+		else if(print[a] == '+'||print[a] == '-'||print[a] == '/'||print[a] == '*'){
+			switch(print[a]){
+				case 47:
+					count[n] = 1;
+					break;
+				case 43:
+					count[n] = 2;
+					break;
+				case 42:
+					count[n] = 3; 
+					break;
+				case 45:
+					count[n] = 4;
+					break;
+			}
+			n++;
+			f = 1;
+		}
+		else if(print[a] == '.'){
+			f = 0;
+		}
 	}
 }
 int main(){
