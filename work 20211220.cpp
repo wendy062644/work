@@ -196,3 +196,4 @@ void Set(int x, int y){
 	COORD pos = {x, y};
 	SetConsoleCursorPosition(hOut, pos);
 } //指定cmd上的位置 
+//目前尚未加入小數點轉換
