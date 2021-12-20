@@ -68,18 +68,34 @@ void Calculate(){
 			}
 			print.clear(); //清空string
 			Set(4, 2); //設定cmd座標 
-			cout << setw(15) << tt; //輸出計算結果 
+			cout << setw(15) << tt; //輸出計算結果
 			int number[15] = {0}, m = 0, tt1 = tt;
+			tt = tt - tt1;
+			
+			int nfloat[6] = {0};
+			
+			for(int i = 0; 5 > i; i++)
+			{
+				tt = tt * 10;
+				nfloat[i] = (int)tt%10;
+			}
+			
 			while(tt1){
 				number[m] = tt1%10;
 				tt1 = tt1/10;
 				m++;
 			} //將數字分開記錄在陣列中 
+			
 			for(int i = m-1; i >= 0; i--)
 			{
 				char str = number[i]+48;
 				print = print + str;
 			} //將陣列內的數字轉換到string內
+			
+			for(int i = 4; i >= 0; i--)
+			{
+				
+			}
 		}
 	}
 }
