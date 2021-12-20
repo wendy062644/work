@@ -12,10 +12,10 @@ void Calculate(){
 	long long tt = 0;
 	for(int a = 0; print.length() > a; a++)
 	{
-		if(f&&print[a] >= '0'&&print[a] <= '9'){
+		if(f&&print[a] >= '0'&&print[a] <= '9'){ //將string換成int 
 			num[n] = num[n]*10 + print[a]-48;
 		}
-		else if(!f&&print[a] >= '0'&&print[a] <= '9'){
+		else if(!f&&print[a] >= '0'&&print[a] <= '9'){ //將小數點後的string換成int 
 			numfloat[n] = numfloat[n]*10 + print[a]-48;
 		}
 		else if(print[a] == '+'||print[a] == '-'||print[a] == '/'||print[a] == 'x'){
@@ -36,10 +36,10 @@ void Calculate(){
 			n++;
 			f = 1;
 		}
-		else if(print[a] == '.'){
+		else if(print[a] == '.'){ //將換算後的整數int加上小數點 
 			f = 0;
 		}
-		if(a == print.length()-1){
+		if(a == print.length()-1){ //string的數字做計算 
 			tt = num[0];
 			for(int i = 0; n > i; i++)
 			{
@@ -56,8 +56,20 @@ void Calculate(){
 					tt = tt - num[i+1];
 				}
 			}
-			Set(4, 2);
-			cout << setw(15) << tt;
+			print.clear(); //清空string 
+			int number[15] = {0}, m = 0;
+			while(tt){
+				number[m] = tt%10;
+				tt = tt/10;
+				m++;
+			} //將數字分開記錄在陣列中 
+			for(int i = m-1; i >= 0; i--)
+			{
+				char str = number[i]+48;
+				print = print + str;
+			} //將陣列內的數字轉換到string內
+			Set(4, 2); //設定cmd座標 
+			cout << setw(15) << print; //輸出計算結果 
 		}
 	}
 }
@@ -78,7 +90,7 @@ int main(){
 			cout << "|               |";
 		}
 		cout << " |" << endl;
-	}
+	} //輸出計算機介面 
 	for(int i = 0; 9 > i; i++)
 	{
 		cout << " | ";
@@ -104,7 +116,7 @@ int main(){
 			}
 		}
 		cout << " |" << endl;
-	}
+	} //輸出計算機按鍵介面 
 	cout << " ---------------------" << endl << endl << " Press Space to Clear";
 	while(1)
 	{
@@ -114,12 +126,12 @@ int main(){
 			if(print.length() >= 15){
 				if(num == 32){print.clear(); Set(4, 2); cout << setw(15) << print; continue;}
 				else{continue;}
-			}
+			} //如果按下空白鍵，將清除string 
 			switch(num){
 				case 32:
 					print.clear();
 					Set(4, 2);
-					cout << setw(15) << print; 
+					cout << setw(15) << print;
 					break;
 				case 48:
 					print = print + '0';
@@ -168,19 +180,19 @@ int main(){
 					break;
 				case 61:
 					Calculate();
-					break;
-			}
+					break; 
+			} //判斷按下哪一種鍵 
 			if(num != 61)
 			{
 				Set(4, 2);
 				cout << setw(15) << print;
-			}
+			} //輸出string數字 
 		}
-		Sleep(100);
+		Sleep(100); //延遲0.1s 
 	}
 }
 void Set(int x, int y){
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos = {x, y};
 	SetConsoleCursorPosition(hOut, pos);
-}
+} //指定cmd上的位置 
