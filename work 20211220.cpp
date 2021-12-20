@@ -41,15 +41,15 @@ void Calculate(){
 		}
 		
 		if(a == print.length()-1){ //string的數字做計算
-		double ans = 0;
+
 			for(int i = 0; n >= i; i++)
 			{
 				while(numfloat[i] >= 1){
 					numfloat[i] = numfloat[i]/10;
 				}
 				num[i] = num[i] + numfloat[i];
-				ans = ans + num[i];
 			} //將整數與小數點相加
+			
 			tt = num[0];
 			for(int i = 0; n > i; i++)
 			{
@@ -205,5 +205,4 @@ void Set(int x, int y){
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos = {x, y};
 	SetConsoleCursorPosition(hOut, pos);
-} //指定cmd上的位置 
-//目前尚未加入小數點轉換
+} //指定cmd上的位置  
