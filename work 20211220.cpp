@@ -7,9 +7,9 @@ using namespace std;
 string print;
 void Set(int x, int y);
 void Calculate(){
-	float num[5] = {0};
-	int numfloat[5] = {0}, n = 0, count[8] = {0} , f = 1; // 1 = 除, 2 = 加, 3 = 乘 , 4 = 減 
-	long long tt = 0;
+	double num[5] = {0}, numfloat[5] = {0};
+	int n = 0, count[8] = {0} , f = 1; // 1 = 除, 2 = 加, 3 = 乘 , 4 = 減 
+	double tt = 0;
 	for(int a = 0; print.length() > a; a++)
 	{
 		if(f&&print[a] >= '0'&&print[a] <= '9'){ //將string換成int 
@@ -36,10 +36,20 @@ void Calculate(){
 			n++;
 			f = 1;
 		}
-		else if(print[a] == '.'){ //將換算後的整數int加上小數點 
+		else if(print[a] == '.'){ //判斷是否有小數點 
 			f = 0;
 		}
-		if(a == print.length()-1){ //string的數字做計算 
+		
+		if(a == print.length()-1){ //string的數字做計算
+		double ans = 0;
+			for(int i = 0; n >= i; i++)
+			{
+				while(numfloat[i] >= 1){
+					numfloat[i] = numfloat[i]/10;
+				}
+				num[i] = num[i] + numfloat[i];
+				ans = ans + num[i];
+			} //將整數與小數點相加
 			tt = num[0];
 			for(int i = 0; n > i; i++)
 			{
@@ -56,11 +66,13 @@ void Calculate(){
 					tt = tt - num[i+1];
 				}
 			}
-			print.clear(); //清空string 
-			int number[15] = {0}, m = 0;
-			while(tt){
-				number[m] = tt%10;
-				tt = tt/10;
+			print.clear(); //清空string
+			Set(4, 2); //設定cmd座標 
+			cout << setw(15) << tt; //輸出計算結果 
+			int number[15] = {0}, m = 0, tt1 = tt;
+			while(tt1){
+				number[m] = tt1%10;
+				tt1 = tt1/10;
 				m++;
 			} //將數字分開記錄在陣列中 
 			for(int i = m-1; i >= 0; i--)
@@ -68,8 +80,6 @@ void Calculate(){
 				char str = number[i]+48;
 				print = print + str;
 			} //將陣列內的數字轉換到string內
-			Set(4, 2); //設定cmd座標 
-			cout << setw(15) << print; //輸出計算結果 
 		}
 	}
 }
