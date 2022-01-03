@@ -206,7 +206,16 @@ int main(){
 					break;
 				case 61:
 					Calculate();
-					break; 
+					break;
+				case 8: // backspace
+					string copy;
+					for(int i = 0; print.length()-1 > i; i++)
+					{
+						copy = copy + print[i];
+					}
+					print.clear();
+					print = copy; 
+
 			} //判斷按下哪一種鍵 
 			if(num != 61)
 			{
